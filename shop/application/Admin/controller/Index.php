@@ -2,7 +2,7 @@
 namespace app\admin\controller;
 use think\Controller;
 header('content-type:text/html;charset=utf-8');
-class Index
+class Index extends Controller
 {
 //    public function index(){
 //        return view();
@@ -10,18 +10,12 @@ class Index
 //    }
 
     public function index(){
-        return view('index');
+        $this->assign('nickname',session('user_info.user')['nickname']);
+        return view();
     }
+
 
     public function welcome(){
-        return view();
-    }
-
-    public function user_list(){
-        return view();
-    }
-
-    public function user_del(){
         return view();
     }
 
@@ -29,11 +23,4 @@ class Index
         return view();
     }
 
-    public function admin_list(){
-        return view();
-    }
-
-//    public function admin_role(){
-//        return view();
-//    }
 }

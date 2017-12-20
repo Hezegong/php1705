@@ -7,7 +7,8 @@
  */
 namespace app\admin\controller;
 use think\Controller;
-class admin {
+use app\Admin\model\Users;
+class Admin extends Controller{
     public function admin_role(){
         return view();
     }
@@ -15,4 +16,16 @@ class admin {
     public function admin_cate(){
         return view();
     }
+
+    public function admin_rule(){
+        return view();
+    }
+
+    public function  admin_list(){
+        $user = new Users;
+        $data[0] = $user->gettable();
+        $this->assign('list',$data[0]);
+        return view();
+    }
+
 }

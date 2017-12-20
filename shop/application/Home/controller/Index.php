@@ -7,4 +7,8 @@ class Index
         return view();
 //        $this->fetch();
     }
+
+    public function admin(){
+        return view();
+    }
 }

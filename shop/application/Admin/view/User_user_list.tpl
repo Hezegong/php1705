@@ -10,7 +10,7 @@
     <link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="/static/css/font.css">
     <link rel="stylesheet" href="/static/css/xadmin.css">
-    <script type="text/javascript" src="/static/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/js/jquery-1.8.1.js"></script>
     <script type="text/javascript" src="/static/lib/layui/layui.js" charset="utf-8"></script>
     <script type="text/javascript" src="/static/js/xadmin.js"></script>
     <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
@@ -42,7 +42,7 @@
     </div>
     <xblock>
         <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
-        <button class="layui-btn" onclick="x_admin_show('添加用户','./admin-add.html')"><i class="layui-icon"></i>添加</button>
+        <button class="layui-btn" onclick=" x_admin_show('添加用户','{:url('User/member_add')}',600,400)"><i class="layui-icon"></i>添加</button>
         <span class="x-right" style="line-height:40px">共有数据：88 条</span>
     </xblock>
     <table class="layui-table">
@@ -52,39 +52,46 @@
                 <div class="layui-unselect header layui-form-checkbox" lay-skin="primary"><i class="layui-icon">&#xe605;</i></div>
             </th>
             <th>ID</th>
-            <th>登录名</th>
+            <th>用户名</th>
             <th>手机</th>
             <th>邮箱</th>
-            <th>角色</th>
-            <th>加入时间</th>
+            <th>收件人</th>
+            <th>地址</th>
+            <th>注册时间</th>
             <th>状态</th>
             <th>操作</th>
         </thead>
         <tbody>
+        {volist name="list" id="vo"}
         <tr>
             <td>
                 <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i class="layui-icon">&#xe605;</i></div>
             </td>
-            <td>1</td>
-            <td>admin</td>
-            <td>18925139194</td>
-            <td>113664000@qq.com</td>
-            <td>超级管理员</td>
-            <td>2017-01-01 11:11:42</td>
+            <td>{$vo.id}</td>
+            <td>{$vo.username}</td>
+            <td>{$vo.phone}</td>
+            <td>{$vo.email}</td>
+            <td>{$vo.true_name}</td>
+            <td>{$vo.address}</td>
+            <td>{$vo.reg_time}</td>
             <td class="td-status">
                 <span class="layui-btn layui-btn-normal layui-btn-mini">已启用</span></td>
             <td class="td-manage">
                 <a onclick="member_stop(this,'10001')" href="javascript:;"  title="启用">
                     <i class="layui-icon">&#xe601;</i>
                 </a>
-                <a title="编辑"  onclick="x_admin_show('编辑','admin-edit.html')" href="javascript:;">
+                <a title="编辑"  onclick="x_admin_show('编辑','member_edit.html',600,400)" href="javascript:;">
                     <i class="layui-icon">&#xe642;</i>
+                </a>
+                <a onclick="x_admin_show('修改密码','member_password.html',600,400)" title="修改密码" href="javascript:;">
+                    <i class="layui-icon">&#xe631;</i>
                 </a>
                 <a title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">
                     <i class="layui-icon">&#xe640;</i>
                 </a>
             </td>
         </tr>
+        {/volist}
         </tbody>
     </table>
     <div class="page">
